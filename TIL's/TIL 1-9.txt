@@ -1,0 +1,4 @@
+I learned += instead of (variable) + 
+
+Githubs: Inhertance example
+

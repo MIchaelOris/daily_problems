@@ -1,0 +1,31 @@
+HTTP
+
+COMMON VERBS
+Get - Reading
+Post - changing
+Patch - for updating
+Delet - for removing
+
+HTTP Rsponse
+
+Status
+
+Headers
+
+Body
+<html
+
+CODES
+
+100 - Informational
+
+200 - Success
+
+300 - Redirect
+
+400 - Client Error (your fault)
+
+500 - Server Error
+
+
+

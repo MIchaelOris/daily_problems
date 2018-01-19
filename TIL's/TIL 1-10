@@ -1,0 +1,8 @@
+Module is used when you need to sprinkle different behaviors in certain classes
+  - replace methods with "include xxxxx"
+
+  'Require' is the glue
+
+  Name Spacing: Sharing code between other programs
+
+  
