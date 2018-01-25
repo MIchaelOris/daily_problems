@@ -1,0 +1,2 @@
+class CreateFullName < ApplicationRecord
+end
