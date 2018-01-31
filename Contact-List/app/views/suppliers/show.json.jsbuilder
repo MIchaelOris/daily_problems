@@ -1,0 +1,3 @@
+json.id @supplier_id
+json.name @supplier.name
+json.product_names @supplier.contacts.map { |contact| contact.name}
