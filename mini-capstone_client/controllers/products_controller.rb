@@ -91,13 +91,3 @@ module ProductsController
     products_index_view(products)
   end
 end
-
-
-
-
-
-
-
-
-
-

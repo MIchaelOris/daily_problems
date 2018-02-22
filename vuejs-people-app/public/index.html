@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="index.js" defer></script>
+  <style>
+    .strike {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="vue-app">
+
+    <router-view></router-view>
+
+  </div>
+</body>
+</html>
+
+<template id="home-page">
+  <div class="vue-component">
+
+    <div>
+      <div v-for="person in people">
+        <h2 v-on:click="toggleBioVisible(person)">{{ person.name }}</h2>
+        <div v-if="person.bioVisible">
+          <h4>{{ person.bio }}</h4>
+          <button v-on:click="deletePerson(person)">Delete this guy</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>Person Count: {{ people.length }}</p>
+    </div>
+
+    <div>
+      <h3>Add a Person</h3>
+      <div>
+        <ul>
+          <li v-for="error in errors">{{ error }}</li>
+        </ul>
+      </div>
+      <div>
+        Name: <input v-model="newPerson.name">
+      </div>
+      <div>
+        Bio: <input v-model="newPerson.bio">
+      </div>
+      <button v-on:click="addPerson()">Add Person</button>
+    </div>
+
+  </div>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

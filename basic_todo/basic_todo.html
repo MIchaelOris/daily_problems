@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+.complete {
+    text-decoration: line-through;
+}
+.hidden {
+  display: none;
+
+}
+</style>
+</head>
+<body>
+  <p onclick="changeComplete(this)">Pay bills</p>
+  <p onclick="changeComplete(this)">Wash car</p>
+  <p onclick="changeComplete(this)">Get laundry</p>
+
+  <button onclick="hideTasks()">
+    Hide completed tasks
+  </button>
+
+  <button onclick="showTasks()">
+    Show completed tasks
+  </button>
+
+  <h4>Completed #: <span id="completed-count">0</span</span>
+
+
+
+<script>
+  function changeComplete(task) {
+        task.classList.toggle("complete");
+        var countHolder = document.querySelectorAll("#completed-count");
+        countHolder.innerText = tasks.length
+      }
+  function hideTasks() {
+        var completed = document.querySelectorAll(".complete");
+        completed.forEach(function(task) {
+          task.classList.add("hidden");
+        }
+        );
+      }
+  function showTasks() {
+        var tasks = document.querySelectorAll(".hidden");
+        tasks.forEach(function(task) {
+          task.classList.remove("hidden");
+        }
+        );
+      }
+  
+  
+    
+  </script>
+  </body>
+</html>

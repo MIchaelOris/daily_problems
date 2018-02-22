@@ -1,0 +1,8 @@
+Setup instructions:
+
+* setup and migrate database
+
+* rake db:seed
+
+* redis must be running for caching.
+
