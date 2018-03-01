@@ -11,98 +11,65 @@ class Frontend
     while true
       system "clear"
 
-      puts "Welcome to Virtual Realtor"
+      puts "Welcome to Virtual Realtor!"
       puts "Create an Account to search for Listings in your Area"
       puts "    [1] See Listings by Neighborhood"
-      puts "        [1.1] Sort listings by size"
+      puts "        [1.1] Sort listings by number of Bedrooms"
       puts "        [1.2] Sort listings by price"
-      #puts "        [1.3] Sort listings by size"
-      #puts "        [1.4] Sort products by description"
-      #puts "        [1.5] Show products by category"
-      #puts "    [2] See one product"
       puts "    [2] Schedule an Appointment"
-      puts "    [3] Confirm/Cancel/Reschedule an Appointment"
-      puts "    [4] Destroy a product"
-      puts "    [5] See your Appointments"
-      #puts "    [cart] Show shopping cart"
+      puts "    [3] Create a Listing"
+      puts "    [4] See your Appointments"
+      puts "    [5] Confirm/Cancel/Reschedule an Appointment"
       puts
-      puts "    [signup] Signup (create a user)"
+      puts "    [signup] Signup (create a User/Agent)"
       puts "    [login]  Login (create a JSON web token)"
-      #puts "    [logout] Logout (erase the JSON web token)"
       puts "    [q] Quit"
 
       input_option = gets.chomp
 
       if input_option == "1"
-        products_index_action
+        listings_index_action
       elsif input_option == "1.1"
-        products_search_action("size")
+        listings_search_action("bedrooms")
       elsif input_option == "1.2"
-        products_sort_action("price")
-      #elsif input_option == "1.3"
-        #products_sort_action("name")
-      #elsif input_option == "1.4"
-        #products_sort_action("description")
-      #elsif input_option == "1.5"
-        #puts 
-        #response = Unirest.get("http://localhost:3000/categories")
-        #category_hashs = response.body
-        #puts "Categories"
-        #puts "-" * 40
-        #category_hashs.each do |category_hash|
-        #  puts "- #{category_hash["name"]}"
-        #end
-        #puts
-
-        #print "Enter a category name: "
-        #category_name = gets.chomp
-        #response = Unirest.get("http://localhost:3000/products?category=#{category_name}")
-        #product_hashs = response.body
-
-        #product_hashs.each do |product_hash|
-        #  puts "- #{product_hash["name"]}"
-        #end
-
+        listings_sort_action("price")
       elsif input_option == "2"
-        products_show_action
+        listings_show_action
       elsif input_option == "3"
-        products_create_action
+        listings_create_action
       elsif input_option == "4"
-        products_update_action
+        listings_update_action
       elsif input_option == "5"
-        products_destroy_action
-      elsif input_option == "6"
-        response = Unirest.get("http://localhost:3000/orders")
+        response = Unirest.get("http://localhost:3000/listings")
         if response.code == 200
           puts JSON.pretty_generate(response.body)
         elsif response.code == 401
           puts "Please sign up for an account to see listings"
         end
-      #elsif input_option == "cart"
         puts
         puts "Here are all the listings you have scheduled"
         puts
-        response = Unirest.get("http://localhost:3000/carted_products")
-        carted_products = response.body
-        puts JSON.pretty_generate(carted_products)
+        response = Unirest.get("http://localhost:3000/scheduled_listings")
+        scheduled_showings = response.body
+        puts JSON.pretty_generate(scheduled_showings)
 
         puts "Press enter to continue,"
-        puts "or press 'o' to place the order"
-        puts "or press 'r' to remove a product"
+        puts "or press 's' to schedule a showing"
+        puts "or press 'c' to cancel a showing"
 
         sub_option = gets.chomp
 
-        if sub_option == 'o'
-          response = Unirest.post('http://localhost:3000/orders')
+        if sub_option == 's'
+          response = Unirest.post('http://localhost:3000/listings')
           order_hash = response.body
-          puts JSON.pretty_generate(order_hash)
+          puts JSON.pretty_generate(appointment_hash)
         elsif sub_option == 'r'
-          carted_products.each do |carted_product|
-            puts "[#{carted_product["id"]}] #{carted_product["product"]["name"]}"
+          scheduled_showingss.each do |scheduled_showing|
+            puts "[#{scheduled_showing["address"]}]"
           end
-          print "enter the carted product id to remove: "
+          print "enter the address to remove: "
           remove_id = gets.chomp
-          response = Unirest.delete("http://localhost:3000/carted_products/#{remove_id}")
+          response = Unirest.delete("http://localhost:3000/scheduled_showings/#{remove_address}")
           puts JSON.pretty_generate(response.body)
         end
       elsif input_option == "signup"

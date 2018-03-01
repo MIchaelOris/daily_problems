@@ -15,3 +15,4 @@ class PeopleController < ApplicationController
       render json: {errors: @person.errors.full_messages}, status: :unprocessable_entity
     end
   end
+end 

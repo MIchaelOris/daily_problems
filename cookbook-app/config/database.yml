@@ -80,6 +80,10 @@ test:
 #
 production:
   <<: *default
-  database: cookbook-app_production
+  database: cookbook-app-production
   username: cookbook-app
   password: <%= ENV['COOKBOOK-APP_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
